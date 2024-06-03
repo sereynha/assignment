@@ -38,7 +38,7 @@ public class PromotionController {
     @GetMapping
     public ResponseEntity<PageDto> getAll(
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            @RequestParam(name = "limit", defaultValue = "10") int limit,
             @RequestParam(name = "sort", required = false, defaultValue = "name:asc") String sort,
             @RequestParam(name = "PromotionName", defaultValue = "") String name,
             @RequestParam(value = "startDate", defaultValue = "#{new java.util.Date()}", required = false)

@@ -45,7 +45,7 @@ public class PermissionController {
     @GetMapping
     public ResponseEntity<PageDto> getAll(
             @RequestParam(name = "page", defaultValue = "1") int page,
-            @RequestParam(name = "limit", defaultValue = "5") int limit,
+            @RequestParam(name = "limit", defaultValue = "10") int limit,
             @RequestParam(name = "sort", required = false, defaultValue = "name:asc") String sort
     ){
         return ResponseEntity.ok(new PageDto(permissionService.getAll(page,limit,sort)));
