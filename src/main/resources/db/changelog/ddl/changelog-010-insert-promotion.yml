@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: promotion_insert
+      author: sereypanha14@gmail.com
+      changes:
+        - loadData:
+            tableName: promotion
+            file: db/changelog/data/changelog-010-promotion.csv
+            columns:
+              - column:
+                  name: name
+                  type: STRING
+              - column:
+                  name: slug
+                  type: STRING
+              - column:
+                  name: description
+                  type: STRING
+              - column:
+                  name: discount_percentage
+                  type: NUMERIC
+              - column:
+                  name: amount_course
+                  type: NUMERIC
+              - column:
+                  name: price_amount
+                  type: NUMERIC
+              - column:
+                  name: is_active
+                  type: boolean
+              - column:
+                  name: start_date
+                  type: DATETIME
+              - column:
+                  name: end_date
+                  type: DATETIME
+              - column:
+                  name: create_at
+                  type: DATETIME
+              - column:
+                  name: created_by
+                  type: STRING

@@ -1,0 +1,15 @@
+databaseChangeLog:
+  - changeSet:
+      id: promotion_course_insert
+      author: sereypanha14@gmail.com
+      changes:
+        - loadData:
+            tableName: promotion_course
+            file: db/changelog/data/changelog-011-promotion_course.csv
+            columns:
+              - column:
+                  name: promotion_id
+                  type: NUMERIC
+              - column:
+                  name: course_id
+                  type: NUMERIC
