@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/roles")
+@RequestMapping("roles")
 @SecurityRequirement(name = "Bearer Authentication")
 @RequiredArgsConstructor
 @Tag(name = "Role", description = "Role items")

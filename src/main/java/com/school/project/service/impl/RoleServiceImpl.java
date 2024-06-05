@@ -3,6 +3,7 @@ package com.school.project.service.impl;
 import com.school.project.dto.ResponseStatusDto;
 import com.school.project.dto.RoleDto;
 import com.school.project.exception.DuplicatedException;
+import com.school.project.exception.NotFoundException;
 import com.school.project.mapper.RoleMapper;
 import com.school.project.model.Permission;
 import com.school.project.model.Role;
@@ -29,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Role create(RoleDto dto) {
         validateDuplicateName(dto.getName(),null);
-        var role = this.roleMapper.toEntity(dto);
+        Role role = this.roleMapper.toEntity(dto);
         List<Permission> foundList = this.permissionRepository.findAllById(dto.getPermissionsId());
         Set<Permission> found = Set.copyOf(foundList);
         role.setPermissions(found);
@@ -44,11 +45,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public ResponseStatusDto update(Long id, RoleDto dto) {
         validateDuplicateName(dto.getName(),id);
-        var role = this.roleMapper.toEntity(dto);
+        Role roleFound = this.repository.findById(id).orElseThrow(() -> new NotFoundException("Role",id));
+        Role role = this.roleMapper.toEntity(dto);
+        roleFound.setDescription(role.getDescription());
+        roleFound.setName(role.getName());
         List<Permission> foundList = this.permissionRepository.findAllById(dto.getPermissionsId());
         Set<Permission> found = Set.copyOf(foundList);
         role.setPermissions(found);
-        this.repository.save(role);
+        this.repository.save(roleFound);
         return new ResponseStatusDto("Update Role", Constants.MESSAGE.SUCCESS_MESSAGE, HttpStatus.OK.toString());
     }
     private boolean checkExistedName(String name, Long id) {

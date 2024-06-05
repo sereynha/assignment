@@ -63,7 +63,7 @@ public class PromotionServiceImpl implements PromotionService {
     public ResponseStatusDto update(Long id,boolean activation) {
         Promotion promotion = getById(id);
         promotion.setIsActive(activation);
-        return new ResponseStatusDto("Create Promotion", Constants.MESSAGE.SUCCESS_MESSAGE, HttpStatus.OK.toString());
+        return new ResponseStatusDto("Update Promotion", Constants.MESSAGE.SUCCESS_MESSAGE, HttpStatus.OK.toString());
     }
 
 }
