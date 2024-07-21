@@ -19,8 +19,6 @@ services:
       - '1080:1080'
       - '1025:1025'
 networks:
-  spring-demo:
-    driver: 'bridge'
   default:
     driver: 'bridge'
 volumes:
